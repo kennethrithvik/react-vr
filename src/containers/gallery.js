@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import AppBar from 'material-ui/AppBar';
+
+import { GridList, GridTile } from 'material-ui/GridList';
 
 import fetchImage from '../actions/fetchImageAction'
 
 
 class Gallery extends Component {
-  constructor(props){
+
+  constructor(props) {
     super(props);
+    this.state={};
   }
-  componentDidMount(){
+  componentDidMount() {
     this.props.fetchImage();
   }
 
   render() {
+    let content = (this.props.images) ? this.props.images.map((image, index) => (
+      <GridTile key={ index } title={ image.name } >
+        <img src={ image.pano } alt={image.pano}/>
+      </GridTile>
+    )) : null;
     return (
-      <div>
-        <AppBar title="React-360" showMenuIconButton={ false } />
-        <div className="container-fluid">
-        </div>
+      <div className="row">
+        <GridList>
+          { content }
+        </GridList>
       </div>
       );
   }
@@ -31,7 +39,9 @@ let mapStateToProps = (state) => {
   };
 }
 let mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({fetchImage},dispatch);
+  return bindActionCreators({
+    fetchImage
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
