@@ -1,11 +1,11 @@
 import * as types from '../actions/actionTypes';
 
-export default function sampleReducer(state = {}, action) {
+export default function fetchImageReducer(state = {}, action) {
   switch (action.type) {
-    case types.SAMPLE_ACTION:
+    case types.FETCH_IMAGES:
       return {
         ...state,
-        data: action.data
+        images: action.images
       };
     default:
       return state;
