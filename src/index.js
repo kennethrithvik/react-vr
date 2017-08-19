@@ -9,7 +9,6 @@ import configureStore from './store/configureStore';
 import { ApolloClient, ApolloProvider } from 'react-apollo';
 
 import App from './containers/App';
-import Galley from './containers/gallery';
 import './css/index.css';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
